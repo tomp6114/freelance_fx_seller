@@ -6,7 +6,7 @@ import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:freelance_fx_seller/model/service_model.dart';
 
-Future<void> addProduct(ServiceModel service, FilePickerResult image) async {
+Future<void> addService(ServiceModel service, FilePickerResult image) async {
   final FirebaseFirestore _DB = FirebaseFirestore.instance;
   final serviceDB = _DB.collection('services').doc();
   service.id = serviceDB.id;

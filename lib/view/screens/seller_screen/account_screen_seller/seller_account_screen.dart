@@ -40,21 +40,7 @@ class SellerAccountScreen extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ElevatedButton(
-                  onPressed: () {
-                    Get.off(const BottomNavigationSeller());
-                  },
-                  child: Text(
-                    "Become a Buyer",
-                    style: GoogleFonts.montserrat(),
-                  ),
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(kblack),
-                  ),
-                ),
-              ),
+              
             ],
           )
         ],

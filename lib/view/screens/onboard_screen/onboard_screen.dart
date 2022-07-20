@@ -21,7 +21,7 @@ class OnBoardScreen extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return ServiceCreation();
+            return BottomNavigationSeller();
           } else {
             return OnBoardWidget(size: size);
           }

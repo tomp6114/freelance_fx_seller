@@ -165,7 +165,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                         ),
                         onPressed: () {
-                          //googleSignIn();
+                          AuthMethods().googleSignIn();
                         },
                         child: SizedBox(
                           //alignment: Alignment.center,
@@ -205,6 +205,8 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
+
+  
 
   // Future signIn(BuildContext context) async {
   //   showDialog(

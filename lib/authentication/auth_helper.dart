@@ -3,13 +3,14 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:freelance_fx_seller/model/user_model.dart';
 import 'package:get/get.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 import '../view/screens/onboard_screen/onboard_screen.dart';
 
 class AuthMethods {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final FirebaseFirestore _DB = FirebaseFirestore.instance;
-
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
   Future<String> signUpUser({
     required String email,
     required String password,
@@ -72,9 +73,16 @@ class AuthMethods {
     return res;
   }
 
-  Future logoutUser() async {
-    await FirebaseAuth.instance
+  logoutUser() async {
+    await _auth
         .signOut()
-        .then((value) => Get.offAll(()=>OnBoardScreen()));
+        .then((value) => Get.offAll(()=>const OnBoardScreen()));
   }
+
+   googleSignIn() async{
+    var user= await _googleSignIn.signIn();
+    print(user);
+    
+   }
+
 }

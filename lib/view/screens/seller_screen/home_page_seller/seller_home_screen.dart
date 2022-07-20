@@ -1,7 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
+import 'package:freelance_fx_seller/view/screens/seller_screen/service_creation/service_creation.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-
 import '../../../constants/colors.dart';
 
 class SellerHomeScreen extends StatelessWidget {
@@ -16,6 +17,8 @@ class SellerHomeScreen extends StatelessWidget {
         width: size.width,
         child: SingleChildScrollView(
           child: Column(
+            // mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 height: size.height * 0.08,
@@ -83,8 +86,8 @@ class SellerHomeScreen extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding:
-                            const EdgeInsets.only(left: 20.0, right: 30, top: 10),
+                        padding: const EdgeInsets.only(
+                            left: 20.0, right: 30, top: 10),
                         child: Text(
                           "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
                           style: GoogleFonts.montserrat(color: Colors.white),
@@ -116,14 +119,18 @@ class SellerHomeScreen extends StatelessWidget {
                   width: size.width - 45,
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.all(Radius.circular(5)),
-                      border:
-                          Border.all(color: Color.fromARGB(255, 180, 177, 177))),
+                      border: Border.all(
+                          color: Color.fromARGB(255, 180, 177, 177))),
                   child: TextButton.icon(
                     icon: Icon(
                       Icons.wallet_travel,
                       color: Colors.black,
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      Get.to(ServiceCreation());
+                      
+
+                    },
                     label: Text(
                       "My Wallet",
                       style: GoogleFonts.montserrat(color: Colors.black),
@@ -193,7 +200,17 @@ class SellerHomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-              )
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 15.0, top: 10.0),
+                child: Text(
+                  "My Services",
+                  style: GoogleFonts.montserrat(
+                      fontSize: 15, fontWeight: FontWeight.bold),
+                ),
+              ),
+
+              // FloatingActionButton(onPressed: (){})
             ],
           ),
         ),

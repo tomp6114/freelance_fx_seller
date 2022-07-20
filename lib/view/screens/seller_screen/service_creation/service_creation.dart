@@ -16,6 +16,7 @@ class ServiceCreation extends StatelessWidget {
   TextEditingController descriptionController = TextEditingController();
   TextEditingController priceController = TextEditingController();
   TextEditingController domainController = TextEditingController();
+  TextEditingController daysController = TextEditingController();
   final formkey = GlobalKey<FormState>();
   FilePickerResult? image;
 
@@ -50,7 +51,7 @@ class ServiceCreation extends StatelessWidget {
                   height: MediaQuery.of(context).size.height * 0.25,
                   width: MediaQuery.of(context).size.width * 90,
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                      borderRadius: const BorderRadius.all(Radius.circular(10)),
                       color: kVoliet.withOpacity(0.3)),
                   child: Image.network(
                       "https://www.gstatic.com/mobilesdk/160503_mobilesdk/logo/2x/firebase_28dp.png"),
@@ -68,7 +69,6 @@ class ServiceCreation extends StatelessWidget {
                               const SnackBar(
                                   content: Text('No file selected')));
                         }
-                        
                       },
                       child: (data == null)
                           ? const Text('Add Image')
@@ -220,6 +220,41 @@ class ServiceCreation extends StatelessWidget {
                   },
                 ),
                 kheight20,
+                TextFormField(
+                  keyboardType: TextInputType.number,
+                  style: const TextStyle(
+                    color: Color.fromARGB(193, 85, 81, 81),
+                  ),
+                  decoration: const InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color.fromARGB(90, 126, 123, 135), width: 0.7),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8.0),
+                      ),
+                    ),
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(
+                        color: Color.fromARGB(90, 126, 123, 135),
+                      ),
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(8.0),
+                      ),
+                    ),
+                    labelText: "Days",
+                    labelStyle: TextStyle(color: klabeltext),
+                  ),
+                  controller: daysController,
+                  validator: (value) {
+                    if (RegExp(
+                            "^[a-zA-Z0-9.!#%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*")
+                        .hasMatch(value!)) {
+                      return null;
+                    } else {
+                      return "Please provide a valid days";
+                    }
+                  },
+                ),
                 kheight20,
                 ElevatedButton(
                   onPressed: () {
@@ -260,14 +295,17 @@ class ServiceCreation extends StatelessWidget {
     final price = priceController.text.trim();
     final domain = domainController.text.trim();
 
+    final days = daysController.text.trim();
+
     final service = ServiceModel(
       title: title,
       description: description,
       price: double.parse(price),
       domain: domain,
+      days: double.parse(days),
     );
     toast(context, 'Adding Service Please wait');
-    await addProduct(service, image!)
+    await addService(service, image!)
         .whenComplete(() => Get.off(BottomNavigationSeller()));
   }
 
